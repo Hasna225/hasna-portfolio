@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cost Calculator - Pixel Ice Cream</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+  <h1>Cost Calculator</h1>
+
+  <p>Number of Scoops: <input type="text" id="scoops"></p>
+  <p>Number of Shakes: <input type="text" id="shakes"></p>
+  <p>Hours of Gaming: <input type="text" id="hours"></p>
+
+  <p>Package Type:</p>
+  <select id="package">
+    <option value="">--Select a package--</option>
+    <option value="basic">Basic</option>
+    <option value="deluxe">Deluxe</option>
+    <option value="premium">Premium</option>
+  </select>
+
+  <input type="button" value="Calculate" onclick="calculateTotal()">
+  <p id="textDisplayed1"></p>
+
+  <p><a href="index.html">Back to Home</a></p>
+
+  <img src="https://i.pinimg.com/736x/c0/dc/fb/c0dcfb2884656efe2c5e95b529f04bb1.jpg" alt="Ice Cream Gaming" width="500">
+
+  <script>
+    "use strict";
+    function calculateTotal() {
+      let scoops = $("#scoops").val();
+      let shakes = $("#shakes").val();
+      let hours = $("#hours").val();
+      let packageType = $("#package").val();
+      let total = 0;
+
+      if (isNaN(scoops) || isNaN(shakes) || isNaN(hours) || packageType === "") {
+        $("#textDisplayed1").html('Invalid input. Please enter numbers and select a valid package.');
+        return;
+      }
+
+      if (packageType == "basic") {
+        total = (scoops * 2) + (shakes * 4) + (hours * 5) + 10;
+      } else if (packageType == "deluxe") {
+        total = (scoops * 2) + (shakes * 4) + (hours * 5) + 20;
+      } else if (packageType == "premium") {
+        total = (scoops * 2) + (shakes * 4) + (hours * 5) + 30;
+      } else {
+        $("#textDisplayed1").html('Invalid package selected.');
+        return;
+      }
+
+      $("#textDisplayed1").html('Total: $' + total);
+    }
+  </script>
+</body>
+</html>
